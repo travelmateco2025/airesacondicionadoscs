@@ -363,22 +363,119 @@ window.addEventListener('load', () => {
     document.head.appendChild(loadedStyle);
 });
 
-// Temperature animation in hero
-function animateTemperature() {
-    const tempElement = document.querySelector('.temp');
-    if (tempElement) {
-        const temps = ['22°C', '23°C', '24°C', '23°C', '22°C'];
-        let currentIndex = 0;
+// Instagram Carousel with Gear Effect
+class InstagramCarousel {
+    constructor() {
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.indicators = document.querySelectorAll('.indicator');
+        this.currentSlide = 0;
+        this.totalSlides = this.slides.length;
+        this.isAnimating = false;
+        this.autoPlayInterval = null;
         
-        setInterval(() => {
-            tempElement.textContent = temps[currentIndex];
-            currentIndex = (currentIndex + 1) % temps.length;
-        }, 3000);
+        this.init();
+    }
+    
+    init() {
+        this.setupEventListeners();
+        this.startAutoPlay();
+        this.updateActiveSlide();
+    }
+    
+    setupEventListeners() {
+        // Indicadores click
+        this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                if (!this.isAnimating) {
+                    this.goToSlide(index);
+                }
+            });
+        });
+        
+        // Pausar autoplay al hover
+        const carousel = document.querySelector('.instagram-carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', () => {
+                this.stopAutoPlay();
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                this.startAutoPlay();
+            });
+        }
+        
+        // Click en las tarjetas para abrir Instagram
+        this.slides.forEach(slide => {
+            slide.addEventListener('click', () => {
+                window.open('https://www.instagram.com/airesacondicionados.cs/', '_blank');
+            });
+        });
+    }
+    
+    goToSlide(slideIndex) {
+        if (this.isAnimating || slideIndex === this.currentSlide) return;
+        
+        this.isAnimating = true;
+        
+        // Remover clase active de todos los slides
+        this.slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remover clase active de todos los indicadores
+        this.indicators.forEach(indicator => {
+            indicator.classList.remove('active');
+        });
+        
+        // Agregar clase active al slide actual
+        this.slides[slideIndex].classList.add('active');
+        this.indicators[slideIndex].classList.add('active');
+        
+        this.currentSlide = slideIndex;
+        
+        // Reset animation flag
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 500);
+    }
+    
+    nextSlide() {
+        const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+        this.goToSlide(nextIndex);
+    }
+    
+    updateActiveSlide() {
+        // Asegurar que solo el slide activo sea visible
+        this.slides.forEach((slide, index) => {
+            if (index === this.currentSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+    }
+    
+    startAutoPlay() {
+        this.stopAutoPlay();
+        this.autoPlayInterval = setInterval(() => {
+            this.nextSlide();
+        }, 4000); // Cambiar cada 4 segundos
+    }
+    
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
     }
 }
 
-// Initialize temperature animation
-animateTemperature();
+// Initialize Instagram Carousel
+document.addEventListener('DOMContentLoaded', () => {
+    new InstagramCarousel();
+});
+
+// Temperature animation in hero (removed as we now have the carousel)
 
 // Add click tracking for analytics (if needed)
 function trackClick(element, event) {
