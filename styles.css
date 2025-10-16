@@ -69,6 +69,14 @@ body {
     font-size: 2rem;
 }
 
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -502,6 +510,71 @@ body {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-color);
+}
+
+/* Métodos de Pago Section */
+.metodos-pago {
+    padding: 5rem 0;
+    background: var(--background-light);
+}
+
+.pago-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.pago-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 4px solid var(--primary-color);
+}
+
+.pago-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pago-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--white);
+    font-size: 2rem;
+}
+
+.pago-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.pago-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.pago-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pago-features span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 /* Galería Section */

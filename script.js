@@ -295,7 +295,7 @@ document.head.appendChild(style);
 
 // WhatsApp integration
 function openWhatsApp(message = '') {
-    const phoneNumber = '1234567890'; // Replace with actual phone number
+    const phoneNumber = '59892710542'; // Número de WhatsApp Uruguay
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }

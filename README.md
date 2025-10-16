@@ -29,9 +29,9 @@ Sitio web profesional para el negocio de aires acondicionados con integración c
 
 ## 📞 Información de Contacto
 
-- **Teléfono**: +1 (555) 123-4567
+- **Teléfono**: +598 92 710 542
 - **Instagram**: [@airesacondicionados.cs](https://www.instagram.com/airesacondicionados.cs/)
-- **WhatsApp**: +1 (555) 123-4567
+- **WhatsApp**: +598 92 710 542
 - **Email**: info@airescs.com
 
 ## 🚀 Despliegue en Vercel
@@ -46,7 +46,7 @@ Este sitio está optimizado para despliegue en Vercel:
 
 Para personalizar el sitio:
 
-1. **Número de teléfono**: Busca `1234567890` y reemplaza con tu número
+1. **Número de teléfono**: Ya actualizado con +598 92 710 542
 2. **Email**: Cambia `info@airescs.com` por tu email
 3. **Dirección**: Actualiza la dirección en la sección de contacto
 4. **Colores**: Modifica las variables CSS en `styles.css`
