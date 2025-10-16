@@ -66,10 +66,13 @@ contactForm.addEventListener('submit', function(e) {
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
     submitButton.disabled = true;
     
-    // Simulate form submission (replace with actual form handling)
+    // Create WhatsApp message
+    const whatsappMessage = createWhatsAppMessage(formObject);
+    
+    // Send to WhatsApp immediately
     setTimeout(() => {
         // Show success message
-        showNotification('¡Consulta enviada exitosamente! Te contactaremos pronto.', 'success');
+        showNotification('¡Redirigiendo a WhatsApp para enviar tu consulta!', 'success');
         
         // Reset form
         this.reset();
@@ -78,13 +81,38 @@ contactForm.addEventListener('submit', function(e) {
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
         
-        // Send WhatsApp message (optional)
-        const whatsappMessage = `Hola, soy ${formObject.nombre}. ${formObject.mensaje}. Mi teléfono es ${formObject.telefono} y mi email es ${formObject.email}.`;
-        // Uncomment the line below to open WhatsApp with the message
-        // openWhatsApp(whatsappMessage);
+        // Open WhatsApp with the message
+        openWhatsApp(whatsappMessage);
         
-    }, 2000);
+    }, 1000);
 });
+
+// Function to create WhatsApp message from form data
+function createWhatsAppMessage(formData) {
+    const servicioNames = {
+        'instalacion': 'Instalación',
+        'mantenimiento': 'Mantenimiento',
+        'reparacion': 'Reparación',
+        'presupuesto': 'Presupuesto',
+        'emergencia': 'Servicio de Emergencia'
+    };
+    
+    const servicio = servicioNames[formData.servicio] || formData.servicio;
+    
+    return `🔧 *Consulta desde la Web - Aires Acondicionados CS*
+
+👤 *Cliente:* ${formData.nombre}
+📱 *Teléfono:* ${formData.telefono}
+📧 *Email:* ${formData.email}
+🛠️ *Servicio:* ${servicio}
+
+💬 *Consulta:*
+${formData.mensaje}
+
+---
+*Consulta enviada desde: airesacondicionadoscs.vercel.app*
+*Fecha: ${new Date().toLocaleDateString('es-UY')}*`;
+}
 
 // Form validation
 function validateForm(form) {
