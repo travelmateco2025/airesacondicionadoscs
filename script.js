@@ -232,43 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateElements.forEach(el => observer.observe(el));
 });
 
-// Counter animation for stats
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const increment = target / 100;
-        let current = 0;
-        
-        const updateCounter = () => {
-            if (current < target) {
-                current += increment;
-                counter.textContent = Math.ceil(current) + (target >= 24 ? '' : '+');
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target + (target >= 24 ? '' : '+');
-            }
-        };
-        
-        updateCounter();
-    });
-}
-
-// Trigger counter animation when stats section is visible
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCounters();
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
+// Stats section is now icon-based, no counter animation needed
 
 // Add active class to current section in navigation
 function updateActiveNavLink() {
